@@ -29,10 +29,11 @@
             options = options || {};
 
             function run() {
+                var args = arguments;
                 each(keys(tests), function (label) {
                     var test = tests[label];
                     if ((label in options) && test()) {
-                        options[label].fn.apply(options[label].ctx || this, arguments);
+                        options[label].fn.apply(options[label].ctx || this, args);
                     }
                 });
             }

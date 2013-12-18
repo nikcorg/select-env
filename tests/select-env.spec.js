@@ -143,4 +143,16 @@ describe("lib/select-env", function () {
             selectEnv.addTest("server", function () {});
         });
     });
+
+    it("proxies in all arguments", function () {
+        var alwaystrue = sinon.stub().returns(true);
+        var spy = sinon.spy();
+
+        selectEnv.addTest("alwaystrue", alwaystrue);
+        var runner = selectEnv.alwaystrue(spy);
+
+        runner("foo", "bar", "baz");
+
+        assert.ok(spy.calledWith("foo", "bar", "baz"));
+    })
 });
