@@ -1,6 +1,6 @@
 {
   "name": "selectenv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Define tests and assign callbacks for pretty environment specific code",
   "main": "select-env.js",
   "scripts": {
@@ -13,9 +13,6 @@
   "homepage": "https://github.com/nikcorg/select-env",
   "author": "Niklas Lindgren",
   "license": "MIT",
-  "dependencies": {
-    "underscore": "~1.5.2"
-  },
   "devDependencies": {
     "sinon": "~1.7.3",
     "mocha": "~1.15.1"
