@@ -1,13 +1,34 @@
-var _ = require("underscore");
 var rValidLabel = /[a-z][a-z0-9_$]+/;
 var tests = {};
 var overwrite = true;
+
+var each = function (array, cb) {
+    if (array.forEach) return array.forEach(cb);
+
+    var i = 0, l = array.length;
+    for (; i < l; i++) {
+        cb(array[i]);
+    }
+};
+
+var keys = function (object) {
+    if (Object.keys) return Object.keys(object);
+
+    var keys = [], key;
+    for (key in object) {
+        if (object.hasOwnProperty(key)) {
+            keys.push(key);
+        }
+    }
+    return keys;
+};
 
 function makeRunner(options) {
     options = options || {};
 
     function run() {
-        _.each(tests, function (test, label) {
+        each(keys(tests), function (label) {
+            var test = tests[label];
             if ((label in options) && test()) {
                 options[label].fn.apply(options[label].ctx || this, arguments);
             }
@@ -25,7 +46,7 @@ function makeRunner(options) {
         };
     }
 
-    _.each(tests, function (testfn, label) {
+    each(keys(tests), function (label) {
         run[label] = setup(label);
     });
 
