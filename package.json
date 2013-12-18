@@ -1,6 +1,6 @@
 {
   "name": "selectenv",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Define tests and assign callbacks for pretty environment specific code",
   "main": "select-env.js",
   "scripts": {
