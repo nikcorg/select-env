@@ -6,9 +6,19 @@ useful for making ugly code more readable, by replacing the if-else jungle with 
 
 comes with (naive) tests for `browser` and `server`
 
+# install
+
+## npm
+
+    npm install selectenv
+
+## bower
+
+    bower install selectenv
+
 # examples
 
-    var selectEnv = require("select-env");
+    var selectEnv = require("selectenv");
 
     var runner = selectEnv.server(function () {
         console.log("Node servers rock my world");
