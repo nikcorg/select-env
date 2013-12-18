@@ -1,0 +1,18 @@
+{
+  "name": "selectenv",
+  "main": "select-env.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/nikcorg/select-env",
+  "authors": [
+    "Niklas Lindgren <nikc@iki.fi>"
+  ],
+  "description": "Define tests and assign callbacks for pretty environment specific code",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
