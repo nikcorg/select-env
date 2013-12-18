@@ -30,12 +30,17 @@
 
             function run() {
                 var args = arguments;
+                var self = this;
+                var retval;
+
                 each(keys(tests), function (label) {
                     var test = tests[label];
                     if ((label in options) && test()) {
-                        options[label].fn.apply(options[label].ctx || this, args);
+                        retval = options[label].fn.apply(options[label].ctx || self, args);
                     }
                 });
+
+                return retval;
             }
 
             function setup(label) {

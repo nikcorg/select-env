@@ -154,5 +154,35 @@ describe("lib/select-env", function () {
         runner("foo", "bar", "baz");
 
         assert.ok(spy.calledWith("foo", "bar", "baz"));
-    })
+    });
+
+    it("preserves this", function () {
+        var alwaystrue = sinon.stub().returns(true);
+        selectEnv.addTest("alwaystrue", alwaystrue);
+
+        var foo = {
+            bar: "baz",
+            fn: selectEnv.alwaystrue(function () {
+                return this.bar;
+            })
+        };
+
+        assert.equal("baz", foo.fn());
+    });
+
+    it("can enforce this", function () {
+        var alwaystrue = sinon.stub().returns(true);
+        selectEnv.addTest("alwaystrue", alwaystrue);
+
+        var foo = {
+            bar: "baz",
+            fn: function () {
+                return this.bar;
+            }
+        };
+
+        var runner = selectEnv.alwaystrue(foo.fn, foo);
+
+        assert.equal("baz", runner());
+    });
 });
