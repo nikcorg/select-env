@@ -8,7 +8,7 @@
   },
   "repository": {
       "type": "git",
-      "url": "git@github.com/nikcorg/select-env.git"
+      "url": "git://github.com/nikcorg/select-env.git"
   },
   "homepage": "https://github.com/nikcorg/select-env",
   "author": "Niklas Lindgren",
