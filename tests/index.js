@@ -2,7 +2,7 @@ var Mocha = require("mocha");
 var fs = require("fs");
 var path = require("path");
 
-var mocha = new Mocha();
+var mocha = new Mocha({ reporter: "tap" });
 
 fs.readdirSync(__dirname).filter(function (file) {
     return !(/index\.js$/.test(file));
