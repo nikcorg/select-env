@@ -44,7 +44,7 @@ comes with (naive) tests for `browser` and `server`
 
 # methods
 
-    var selectEnv = require("select-env");
+    var selectEnv = require("selectenv");
 
 ## addTest(label, testfn)
 
