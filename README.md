@@ -2,7 +2,7 @@
 
 runs you callbacks based on passing tests
 
-useful for making ugly code more readable, by replacing the if-else jungle with a fluid api
+useful for making ugly code more readable, by replacing the if-else jungle with a fluent api
 
 comes with (naive) tests for `browser` and `server`
 
