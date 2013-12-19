@@ -20,7 +20,8 @@ comes with (naive) tests for `browser` and `server`
 
     var selectEnv = require("selectenv");
 
-    var runner = selectEnv.server(function () {
+    var runner = selectEnv.
+    server(function () {
         console.log("Node servers rock my world");
     }).
     browser(function () {
