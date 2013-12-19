@@ -85,7 +85,7 @@ function wrapMakeRunner(label) {
     };
 }
 
-function addTest(label, testfn) {
+var addTest = module.exports.addTest = function addTest(label, testfn) {
     if (frozen) {
         return;
     }
@@ -104,42 +104,32 @@ function addTest(label, testfn) {
 
     tests[label] = wrapTest(testfn);
     module.exports[label] = wrapMakeRunner(label);
-}
+};
 
-function createDefaultTests() {
-    addTest("server", function () {
-        return typeof module !== 'undefined' && module.exports;
-    });
-
-    addTest("browser", function () {
-        return typeof(window) !== "undefined";
-    });
-}
-
-function lock() {
+var lock = module.exports.lock = function lock() {
     overwrite = false;
-}
+};
 
-function freeze() {
+var freeze = module.exports.freeze = function freeze() {
     frozen = true;
-}
+};
 
 /* Helper for testing, flushes all tests and restores default state */
-function flush() {
+var flush = module.exports.flush = function flush() {
     if (frozen) {
         return;
     }
 
     tests = {};
     overwrite = true;
-    createDefaultTests();
-}
 
-module.exports = {
-    addTest: addTest,
-    flush: flush,
-    freeze: freeze,
-    lock: lock
+    addTest("server", function () {
+        return typeof process !== 'undefined' && process.pid;
+    });
+
+    addTest("browser", function () {
+        return typeof(window) !== "undefined";
+    });
 };
 
 flush();
