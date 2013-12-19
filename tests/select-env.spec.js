@@ -1,10 +1,17 @@
 var assert = require("assert");
 var sinon = require("sinon");
-var selectEnv = require("../src/select-env");
 
 describe("lib/select-env", function () {
+    var selectEnv;
+
     beforeEach(function () {
-        selectEnv.flush();
+        // Unload
+        Object.keys(require.cache).forEach(function (key) {
+            if (/select-env\.js$/.test(key)) {
+                delete require.cache[key];
+            }
+        });
+        selectEnv = require("../src/select-env")
     });
 
     it("exports flush", function () {
@@ -184,5 +191,16 @@ describe("lib/select-env", function () {
         var runner = selectEnv.alwaystrue(foo.fn, foo);
 
         assert.equal("baz", runner());
+    });
+
+    it("can freeze everything", function () {
+        var spy = sinon.spy();
+
+        selectEnv.addTest("first", spy);
+        selectEnv.freeze();
+        selectEnv.addTest("second", spy);
+
+        assert.equal("function", typeof selectEnv.first);
+        assert.equal("undefined", typeof selectEnv.second);
     });
 });
