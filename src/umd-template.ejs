@@ -1,0 +1,12 @@
+(function (factory, root, moduleName) {
+    if (typeof(module) === "object" && module.exports) {
+        factory(require, module.exports, module);
+    } else if (typeof(define) === "function" && define.amd) {
+        define(factory);
+    } else {
+        root[moduleName] = factory(null, null, { exports: {} });
+    }
+}(function (require, exports, module) {
+<%= moduleSrc %>
+return module.exports;
+}, this, "<%= moduleName %>"));
