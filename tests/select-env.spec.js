@@ -1,6 +1,6 @@
 var assert = require("assert");
 var sinon = require("sinon");
-var selectEnv = require("../select-env");
+var selectEnv = require("../src/select-env");
 
 describe("lib/select-env", function () {
     beforeEach(function () {
