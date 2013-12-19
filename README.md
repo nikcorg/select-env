@@ -40,7 +40,7 @@ comes with (naive) tests for `browser` and `server`
 
     // Your new test is now exposed as a function
     var runner = selectEnv.android(function () {
-        console.log("Beep boop, Android will prevail");
+        console.log("Beep boop");
     });
 
 # methods
