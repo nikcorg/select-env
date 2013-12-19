@@ -48,12 +48,16 @@ comes with (naive) tests for `browser` and `server`
 
 ## addTest(label, testfn)
 
-add a new test. the test is exposed as a function with the same name on `selectEnv`. `testfn` should return a boolean value. `label` can contain alphanumeric characters and the underscore, but must begin with a character.
+add a new test. The test is exposed as a function with the same name as `label` on the `selectEnv` object, `testfn` should return a boolean value. The `label` can contain alphanumeric characters and the underscore, but must begin with a character.
 
 ## lock()
 
-write protect the current test suite
+write protect the current test suite. New tests can still be added, but attempting to overwrite existing tests will throw an error.
+
+## freeze()
+
+freeze the current test suite. No new tests can be added and existing tests cannot be flushed out.
 
 ## flush()
 
-restore default state. used in testing.
+restore default state, unless frozen. used in testing.
