@@ -49,6 +49,7 @@ function makeRunner(options) {
             }
 
             options[label] = { fn: cb, ctx: ctx };
+
             return run;
         };
     }
@@ -76,11 +77,14 @@ function wrapTest(testfn) {
 /* Exports each test by wrapping makeRunner */
 function wrapMakeRunner(label) {
     return function (cb, ctx) {
+        var opts = {};
+
         if (! cb || typeof(cb) !== "function") {
             throw new Error("Can't assign without a callback");
         }
-        var opts = {};
+
         opts[label] = { fn: cb, ctx: ctx };
+
         return makeRunner(opts);
     };
 }
@@ -124,7 +128,7 @@ var flush = module.exports.flush = function flush() {
     overwrite = true;
 
     addTest("server", function () {
-        return typeof process !== 'undefined' && process.pid;
+        return typeof process !== "undefined" && process.pid;
     });
 
     addTest("browser", function () {
