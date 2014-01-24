@@ -51,7 +51,7 @@ comes with (naive) tests for `browser` and `server`
 
 add a new test. The test is exposed as a function with the same name as `label` on the `selectEnv` object, `testfn` should return a boolean value. The `label` can contain alphanumeric characters and the underscore, but must begin with a character.
 
-## lock()
+## protect()
 
 write protect the current test suite. New tests can still be added, but attempting to overwrite existing tests will throw an error.
 

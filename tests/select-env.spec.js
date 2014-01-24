@@ -1,7 +1,7 @@
 var assert = require("assert");
 var sinon = require("sinon");
 
-describe("lib/select-env", function () {
+describe("src/select-env", function () {
     var selectEnv;
 
     beforeEach(function () {
@@ -11,7 +11,7 @@ describe("lib/select-env", function () {
                 delete require.cache[key];
             }
         });
-        selectEnv = require("../src/select-env")
+        selectEnv = require("../src/select-env");
     });
 
     it("exports flush", function () {
@@ -144,7 +144,7 @@ describe("lib/select-env", function () {
     });
 
     it("throws when overwriting after locking", function () {
-        selectEnv.lock();
+        selectEnv.protect();
 
         assert.throws(function () {
             selectEnv.addTest("server", function () {});

@@ -1,7 +1,7 @@
 var rValidLabel = /[a-z][a-z0-9_$]+/;
 var tests = {};
-var overwrite = true;
-var frozen = false;
+var isprotected = false;
+var isfrozen = false;
 
 var each = function (array, cb) {
     if (array.forEach) return array.forEach(cb);
@@ -90,7 +90,7 @@ function wrapMakeRunner(label) {
 }
 
 var addTest = module.exports.addTest = function addTest(label, testfn) {
-    if (frozen) {
+    if (isfrozen) {
         return;
     }
 
@@ -102,30 +102,30 @@ var addTest = module.exports.addTest = function addTest(label, testfn) {
         throw new Error("Invalid environment label");
     }
 
-    if (label in tests && !overwrite) {
-        throw new Error("Can't overwrite existing tests after locking");
+    if (label in tests && isprotected) {
+        throw new Error("Can't overwrite existing tests in a protected suite");
     }
 
     tests[label] = wrapTest(testfn);
     module.exports[label] = wrapMakeRunner(label);
 };
 
-var lock = module.exports.lock = function lock() {
-    overwrite = false;
+var protect = module.exports.protect = function protect() {
+    isprotected = true;
 };
 
 var freeze = module.exports.freeze = function freeze() {
-    frozen = true;
+    isfrozen = true;
 };
 
 /* Helper for testing, flushes all tests and restores default state */
 var flush = module.exports.flush = function flush() {
-    if (frozen) {
+    if (isfrozen) {
         return;
     }
 
     tests = {};
-    overwrite = true;
+    isprotected = false;
 
     addTest("server", function () {
         return typeof process !== "undefined" && process.pid;
